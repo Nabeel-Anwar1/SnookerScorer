@@ -5,11 +5,19 @@ const ScoreCards = (props) => {
     const [modalVisible, setModalVisible] = useState(false)
     const [calc, setCalc] = useState("")
 
-    const setter = (val) => {
+    const setterAdd = (val) => {
         if (props.player == 1) {
           props.setScore1(props.score1 + val);
         } else {
           props.setScore2(props.score2 + val);
+        }
+      };
+
+      const setterRemove = (val) => {
+        if (props.player == 1) {
+          props.setScore1(props.score1 - val);
+        } else {
+          props.setScore2(props.score2 - val);
         }
       };
 
@@ -57,8 +65,11 @@ return (
                 <Text style={styles.numtext}>0</Text>
             </Pressable>
             <View style={styles.endButtons}>
-            <Pressable style={styles.enter} onPress={()=>{setModalVisible(!modalVisible); setter(Number(calc)) ; setCalc("")}}>
-                <Text style={styles.enterText}>Enter</Text>
+            <Pressable style={styles.enter} onPress={()=>{setModalVisible(!modalVisible); setterAdd(Number(calc)) ; setCalc("")}}>
+                <Text style={styles.enterText}>Add</Text>
+            </Pressable>
+            <Pressable style={styles.remove} onPress={()=>{setModalVisible(!modalVisible); setterRemove(Number(calc)) ; setCalc("")}}>
+                <Text style={styles.removeText}>Remove</Text>
             </Pressable>
             <Pressable style={styles.newGameB} onPress={()=>{setModalVisible(!modalVisible);if (props.score1 > props.score2){Alert.alert('New Game', "Player 1's frame");props.setFrame1(props.frame1+1)} else if (props.score1 == props.score2){Alert.alert('New Game', 'Draw')} else {Alert.alert('New Game', "Player 2's frame");props.setFrame2(props.frame2+1)}; props.setScore1(0); props.setScore2(0) ; setCalc("")}}>
                 <Text style={styles.newGameT}>New Game</Text>
@@ -71,13 +82,13 @@ return (
     </Modal>
     <Pressable style={styles.button1} onPress={()=>{setModalVisible(true); props.setPlayer(1)}}>
         <Text style={styles.score1}>{props.score1}</Text>
+        <Text style={styles.frames1}>Frames: {props.frame1}</Text>
     </Pressable>
-    <Text style={styles.frames}>Frames: {props.frame1}</Text>
     <Text style={styles.diff}>{props.score1 - props.score2}</Text>
     <Pressable style={styles.button2} onPress={()=>{setModalVisible(true); props.setPlayer(2)}}>
         <Text style={styles.score2}>{props.score2}</Text>
+        <Text style={styles.frames2}>Frames: {props.frame2}</Text>
     </Pressable>
-    <Text style={styles.frames}>Frames: {props.frame2}</Text>
     <Pressable style={styles.reset} onPress={()=>{props.setFrame1(0); props.setFrame2(0); props.setScore1(0); props.setScore2(0)}}>
         <Text style={styles.resetText}>Reset</Text>
      </Pressable>
@@ -88,20 +99,6 @@ return (
 export default ScoreCards
 
 const styles = StyleSheet.create({
-    newGameB:{
-        backgroundColor:"lightblue",
-        borderColor:"black",
-        borderWidth:2,
-        borderRadius:20,
-        justifyContent:"center",
-        padding:2,
-        height:60,
-        marginTop:12,
-    },
-    newGameT:{
-        fontSize:25,
-        textAlign:"center"
-    },
     endButtons: {
         display:"flex",
         flexDirection: "row",
@@ -112,7 +109,7 @@ const styles = StyleSheet.create({
         borderWidth:2,
         height:30,
         width:75,
-        bottom:10,
+        bottom:5,
         left:330,
     },
     resetText: {
@@ -124,7 +121,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
         marginRight: "5%",
         marginLeft: "5%",
-        height: "38%",
+        height: "40%",
         width: "90%",
         backgroundColor: "blue",
         justifyContent: "center",
@@ -135,23 +132,31 @@ const styles = StyleSheet.create({
         fontSize: 150,
     },
     button2: {
-        marginTop: 15,
+        marginTop: 5,
         marginRight: "5%",
         marginLeft: "5%",
-        height: "38%",
+        height: "40%",
         width: "90%",
         backgroundColor: "orange",
         justifyContent: "center",
     },
     score2: {
-        color: "white",
+        color: "black",
         textAlign: "center",
         fontSize: 150,
     },
-    frames: {
-        textAlign: "center",
+    frames1: {
+        textAlign: "right",
+        right:20,
         marginTop: 5,
-        fontSize:15,
+        fontSize:20,
+        color:"white",
+    },
+    frames2: {
+        textAlign: "right",
+        right:20,
+        marginTop: 5,
+        fontSize:20,
     },
     modalview: {
         margin: 5,
@@ -228,7 +233,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     enterText: {
-        fontSize:30,
+        fontSize:25,
         textAlign: "center"
     },
     back: {
@@ -242,7 +247,31 @@ const styles = StyleSheet.create({
     },
     diff: {
         textAlign: "center",
-        marginTop:10,
-        fontSize:30,
-    }
+        marginTop:3,
+        fontSize:53,
+    },
+    remove: {
+        backgroundColor: "pink",
+        padding: 10,
+        margin: 10,
+        borderRadius: 20,
+        borderColor:"black",
+        borderWidth:2,
+    },
+    removeText: {
+        fontSize:25,
+        textAlign: "center"
+    },
+    newGameB:{
+        backgroundColor:"lightblue",
+        borderColor:"black",
+        borderWidth:2,
+        borderRadius:20,
+        padding:10,
+        margin: 10,
+    },
+    newGameT:{
+        fontSize:25,
+        textAlign:"center"
+    },
 })
