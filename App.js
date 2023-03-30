@@ -10,14 +10,6 @@ export default function App() {
   const [frame2, setFrame2] = useState(0);
   const [player, setPlayer] = useState(1 || 2);
 
-  const setter = (val) => {
-    if (player == 1) {
-      setScore1(score1 + val);
-    } else {
-      setScore2(score2 + val);
-    }
-  };
-
   return (
     <View style={styles.container}>
       <Score
@@ -29,6 +21,8 @@ export default function App() {
         frame2={frame2}
         setFrame1={setFrame1}
         setFrame2={setFrame2}
+        player={player}
+        setPlayer={setPlayer}
       />
       <StatusBar style="auto" />
     </View>
