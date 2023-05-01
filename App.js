@@ -24,13 +24,14 @@ export default function App() {
         player={player}
         setPlayer={setPlayer}
       />
-      <StatusBar style="auto" />
+      <StatusBar style="false" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    display: "flex",
     backgroundColor: "#fff",
   },
 });

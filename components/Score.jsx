@@ -6,7 +6,8 @@ const ScoreCards = (props) => {
     const [modalVisible, setModalVisible] = useState(false)
 
 return (
-<View>
+<View >
+    <View style={styles.box}>
    <ModalScore        
         score1={props.score1}
         score2={props.score2}
@@ -20,18 +21,27 @@ return (
         setPlayer={props.setPlayer}
         setModalVisible={setModalVisible}
         modalVisible={modalVisible}/>
+        <View style={styles.b1}>
     <Pressable style={styles.button1} onPress={()=>{setModalVisible(true); props.setPlayer(1)}}>
         <Text style={styles.score1}>{props.score1}</Text>
         <Text style={styles.frames1}>Frames: {props.frame1}</Text>
     </Pressable>
+    </View>
+    <View style={styles.diffBox}>
     <Text style={styles.diff}>{props.score1 - props.score2}</Text>
+    </View>
+    <View style={styles.b2}>
     <Pressable style={styles.button2} onPress={()=>{setModalVisible(true); props.setPlayer(2)}}>
         <Text style={styles.score2}>{props.score2}</Text>
         <Text style={styles.frames2}>Frames: {props.frame2}</Text>
     </Pressable>
+    </View>
+    <View style={styles.b3}>
     <Pressable style={styles.reset} onPress={()=>{props.setFrame1(0); props.setFrame2(0); props.setScore1(0); props.setScore2(0)}}>
         <Text style={styles.resetText}>Reset</Text>
      </Pressable>
+     </View>
+     </View>
 </View>
 )
 }
@@ -39,64 +49,61 @@ return (
 export default ScoreCards
 
 const styles = StyleSheet.create({
-    reset: {
-        marginTop: 20,
-        borderColor:"black",
-        borderWidth:2,
-        height:30,
-        width:75,
-        bottom:5,
-        left:330,
+    box: {
+        flexDirection:"column",
+        width: "100%",
+        height: "100%"
     },
-    resetText: {
-        fontSize:20,
-        textAlign:"right",
-        marginRight:20,
+    b1: {
+        flex:10,
+        justifyContent:"center",
+        backgroundColor: "royalblue"
+    },
+    diffBox: {
+        flex:2
+    },
+    b2: {
+        flex:10,
+        backgroundColor: "sandybrown"
+    },
+    b3: {
+        flex:1
     },
     button1: {
-        marginTop: 30,
-        marginRight: "5%",
-        marginLeft: "5%",
-        height: "40%",
-        width: "90%",
-        backgroundColor: "blue",
-        justifyContent: "center",
-    },
-    score1: {
-        color: "white",
-        textAlign: "center",
-        fontSize: 150,
+        height: "100%",
+        width: "100%",
     },
     button2: {
-        marginTop: 5,
-        marginRight: "5%",
-        marginLeft: "5%",
-        height: "40%",
-        width: "90%",
-        backgroundColor: "orange",
-        justifyContent: "center",
+        height: "100%",
+        width: "100%",
     },
-    score2: {
-        color: "black",
+    diff:{
         textAlign: "center",
-        fontSize: 150,
+        maxHeight: "100%",
+        maxWidth:"100%",
+        fontSize:50,
+    },
+    score1: {
+        fontSize: 200,
+        textAlign: "center",
     },
     frames1: {
-        textAlign: "right",
-        right:20,
-        marginTop: 5,
-        fontSize:20,
-        color:"white",
+        fontSize: 20,
+        textAlign:"right",
+        marginRight: "5%"
+    },
+    score2: {
+        fontSize: 200,
+        textAlign: "center"
     },
     frames2: {
-        textAlign: "right",
-        right:20,
-        marginTop: 5,
-        fontSize:20,
+        fontSize: 20,
+        textAlign:"right",
+        marginRight: "5%"
     },
-    diff: {
-        textAlign: "center",
-        marginTop:3,
-        fontSize:53,
+    resetText:{
+        fontSize:20,
+        textAlign: "right",
+        marginRight:"5%"
     },
 })
