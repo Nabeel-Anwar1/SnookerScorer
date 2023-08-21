@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         marginRight: "5%"
     },
     resetText:{
-        fontSize:20,
+        fontSize:19,
         textAlign: "right",
         marginRight:"5%"
     },
