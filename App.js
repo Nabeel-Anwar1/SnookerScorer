@@ -1,21 +1,23 @@
 import { StatusBar } from "expo-status-bar";
-import { Button, StyleSheet, Text, View } from "react-native";
-import { useState } from "react";
-import Score from "./components/Score";
+import MainScreen from "./components/MainScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-
   return (
-    <View style={styles.container}>
-      <Score />
-      <StatusBar style="false" />
-    </View>
+    <>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="Home" component={MainScreen} />
+        </Stack.Navigator>
+        <StatusBar style="false" />
+      </NavigationContainer>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    backgroundColor: "#fff",
-  },
-});
