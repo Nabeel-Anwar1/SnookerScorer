@@ -1,21 +1,25 @@
 import { StatusBar } from "expo-status-bar";
 import MainScreen from "./components/MainScreen";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Settings from "./components/Settings";
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator
+        <Tab.Navigator
           screenOptions={{
             headerShown: false,
+            tabBarActiveTintColor: "blue",
+            tabBarInactiveTintColor: "gray",
           }}
         >
-          <Stack.Screen name="Home" component={MainScreen} />
-        </Stack.Navigator>
+          <Tab.Screen name="Home" component={MainScreen} />
+          <Tab.Screen name="Settings" component={Settings} />
+        </Tab.Navigator>
         <StatusBar style="false" />
       </NavigationContainer>
     </>

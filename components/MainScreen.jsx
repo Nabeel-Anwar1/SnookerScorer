@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Pressable, Modal, Alert } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import ModalScore from "./Modal";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const MainScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
